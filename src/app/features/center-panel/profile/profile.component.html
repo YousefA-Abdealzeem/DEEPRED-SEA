@@ -1,0 +1,97 @@
+<div class="animate-fadeInUp">
+  <div class="mb-4">
+    <h2 class="page-title">Center Profile</h2>
+    <p class="page-subtitle">Update your public listing</p>
+  </div>
+
+  <div *ngIf="saved" class="alert d-flex align-items-center gap-2 mb-4 animate-fadeInUp save-success">
+    <span class="material-symbols-outlined save-success-icon">check_circle</span>
+    Profile saved successfully!
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-lg-8">
+      <div class="card-premium p-4 p-md-5">
+        <form [formGroup]="form" (ngSubmit)="save()">
+          <h6 class="section-subheading">Basic Information</h6>
+          <div class="row g-3 mb-4">
+            <div class="col-12">
+              <label class="form-label field-label">Center Name *</label>
+              <input formControlName="name" type="text" class="form-control-tonal w-100"
+                [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched">
+            </div>
+            <div class="col-12">
+              <label class="form-label field-label">Location *</label>
+              <input formControlName="location" type="text" class="form-control-tonal w-100">
+            </div>
+            <div class="col-6">
+              <label class="form-label field-label">Phone</label>
+              <input formControlName="phone" type="tel" class="form-control-tonal w-100">
+            </div>
+            <div class="col-6">
+              <label class="form-label field-label">WhatsApp Number</label>
+              <input formControlName="whatsapp" type="text" class="form-control-tonal w-100">
+            </div>
+            <div class="col-6">
+              <label class="form-label field-label">Email *</label>
+              <input formControlName="email" type="email" class="form-control-tonal w-100"
+                [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched">
+            </div>
+            <div class="col-6">
+              <label class="form-label field-label">Website</label>
+              <input formControlName="website" type="url" class="form-control-tonal w-100">
+            </div>
+          </div>
+
+          <h6 class="section-subheading">About Your Center</h6>
+          <div class="row g-3 mb-4">
+            <div class="col-12">
+              <label class="form-label field-label">Description *</label>
+              <textarea formControlName="description" rows="4" class="form-control-tonal w-100"
+                style="resize:vertical;"
+                [class.is-invalid]="form.get('description')?.invalid && form.get('description')?.touched"></textarea>
+            </div>
+            <div class="col-6">
+              <label class="form-label field-label">Certifications</label>
+              <input formControlName="certifications" type="text" placeholder="PADI, SSI, CMAS" class="form-control-tonal w-100">
+            </div>
+            <div class="col-6">
+              <label class="form-label field-label">Languages Spoken</label>
+              <input formControlName="languages" type="text" placeholder="Arabic, English" class="form-control-tonal w-100">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary-gradient px-5 py-3 d-flex align-items-center gap-2">
+            <span class="material-symbols-outlined" style="font-size:1rem;">save</span> Save Profile
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Preview sidebar -->
+    <div class="col-12 col-lg-4">
+      <div class="card-premium" style="overflow:hidden;position:sticky;top:100px;">
+        <div class="preview-header position-relative">
+          <div class="position-absolute bottom-0 start-0 p-3">
+            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold preview-logo">
+              {{form.get('name')?.value?.charAt(0)}}
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <h6 class="preview-name">{{form.get('name')?.value}}</h6>
+          <div class="d-flex align-items-center gap-1 mb-3 preview-loc">
+            <span class="material-symbols-outlined preview-loc-icon">location_on</span>
+            {{form.get('location')?.value}}
+          </div>
+          <p class="preview-desc">{{form.get('description')?.value | slice:0:120}}...</p>
+          <div class="d-flex align-items-center gap-1 mt-2">
+            <span class="material-symbols-outlined preview-star">star</span>
+            <span class="preview-rating">4.9</span>
+            <span class="preview-reviews">(312 reviews)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

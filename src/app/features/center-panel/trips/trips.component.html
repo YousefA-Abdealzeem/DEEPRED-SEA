@@ -1,0 +1,115 @@
+<div class="animate-fadeInUp">
+  <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+    <div>
+      <h2 class="page-title">Trip Management</h2>
+      <p class="page-subtitle">{{trips.length}} trips configured</p>
+    </div>
+    <button (click)="openAdd()" class="btn-primary-gradient d-flex align-items-center gap-2 px-4 py-2">
+      <span class="material-symbols-outlined" style="font-size:1rem;">add</span>Add New Trip
+    </button>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-xl-4" *ngFor="let t of trips">
+      <div class="card-premium p-4 h-100 d-flex flex-column">
+        <div class="d-flex align-items-start justify-content-between mb-3">
+          <div>
+            <h6 class="trip-name-h mb-2">{{t.name}}</h6>
+            <span class="badge-active">{{t.type}}</span>
+          </div>
+          <button (click)="toggleStatus(t)" class="px-3 py-1 rounded-pill border-0"
+            [class.status-active]="t.status==='active'"
+            [class.status-draft]="t.status!=='active'">
+            {{t.status}}
+          </button>
+        </div>
+
+        <div class="mb-3">
+          <div class="d-flex justify-content-between mb-1">
+            <span class="occ-label">Occupancy</span>
+            <span class="occ-val">{{t.booked}}/{{t.capacity}}</span>
+          </div>
+          <div class="occ-track">
+            <div class="occ-bar" [style.width]="(t.booked/t.capacity*100)+'%'"></div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 mb-3 flex-wrap">
+          <div class="d-flex align-items-center gap-1">
+            <span class="material-symbols-outlined trip-meta-icon trip-meta-text">water</span>
+            <span class="trip-meta-text">{{t.depth}}</span>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <span class="material-symbols-outlined trip-meta-icon trip-meta-text">schedule</span>
+            <span class="trip-meta-text">{{t.duration}}</span>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-between mt-auto pt-3"
+             style="border-top:1px solid var(--surface-container-high);">
+          <span class="trip-price-val">EGP {{t.price}}</span>
+          <div class="d-flex gap-2">
+            <button (click)="openEdit(t)" class="border-0 p-2 rounded-2 trip-edit-btn">
+              <span class="material-symbols-outlined trip-edit-icon">edit</span>
+            </button>
+            <button (click)="delete(t.id)" class="border-0 p-2 rounded-2 trip-del-btn">
+              <span class="material-symbols-outlined trip-del-icon">delete</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div *ngIf="showModal" class="position-fixed d-flex align-items-center justify-content-center p-3 modal-overlay">
+  <div class="card-premium p-4 p-md-5 animate-fadeInUp modal-card">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <h5 class="modal-title">{{editTrip ? 'Edit Trip' : 'Add New Trip'}}</h5>
+      <button (click)="showModal=false" class="border-0 bg-transparent p-1" style="cursor:pointer;">
+        <span class="material-symbols-outlined" style="color:var(--on-surface-variant);">close</span>
+      </button>
+    </div>
+    <form [formGroup]="tripForm" (ngSubmit)="save()">
+      <div class="row g-3">
+        <div class="col-12">
+          <label class="form-label field-label">Trip Name</label>
+          <input formControlName="name" type="text" placeholder="e.g. Morning Reef Dive"
+            class="form-control-tonal w-100"
+            [class.is-invalid]="tripForm.get('name')?.invalid && tripForm.get('name')?.touched">
+        </div>
+        <div class="col-6">
+          <label class="form-label field-label">Trip Type</label>
+          <select formControlName="type" class="form-control-tonal w-100">
+            <option>Day Trip</option><option>Liveaboard</option>
+            <option>Course</option><option>Freediving</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label class="form-label field-label">Price (EGP)</label>
+          <input formControlName="price" type="number" placeholder="350" class="form-control-tonal w-100">
+        </div>
+        <div class="col-6">
+          <label class="form-label field-label">Max Capacity</label>
+          <input formControlName="capacity" type="number" placeholder="10" class="form-control-tonal w-100">
+        </div>
+        <div class="col-6">
+          <label class="form-label field-label">Max Depth</label>
+          <input formControlName="depth" type="text" placeholder="18m" class="form-control-tonal w-100">
+        </div>
+        <div class="col-12">
+          <label class="form-label field-label">Duration</label>
+          <input formControlName="duration" type="text" placeholder="3 hrs" class="form-control-tonal w-100">
+        </div>
+      </div>
+      <div class="d-flex gap-3 mt-4">
+        <button type="button" (click)="showModal=false" class="btn-secondary-tonal flex-fill py-3">Cancel</button>
+        <button type="submit" class="btn-primary-gradient flex-fill py-3 d-flex align-items-center justify-content-center gap-2">
+          <span class="material-symbols-outlined" style="font-size:1rem;">save</span>
+          {{editTrip ? 'Save Changes' : 'Add Trip'}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

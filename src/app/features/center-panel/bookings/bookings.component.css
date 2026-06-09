@@ -1,0 +1,23 @@
+
+.page-title    { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; color:var(--on-surface); margin-bottom:.25rem; }
+.total-revenue { color:var(--on-surface-variant); margin:0; }
+.revenue-val   { color:var(--primary); }
+.search-icon   { left:12px; top:50%; transform:translateY(-50%); color:var(--outline); font-size:1.1rem; }
+.search-width  { width:240px; }
+
+.tab-active   { background:linear-gradient(135deg,#005d90,#0077b6); color:#fff; font-weight:700; }
+.tab-inactive { background:var(--surface-container); color:var(--on-surface-variant); font-weight:500; }
+.filter-tab   { font-size:.82rem; cursor:pointer; transition:all .2s; text-transform:capitalize; }
+
+.booking-id      { font-weight:700; color:var(--primary); font-size:.85rem; }
+.diver-avatar    { width:32px; height:32px; background:linear-gradient(135deg,rgba(0,93,144,.15),rgba(80,217,254,.15)); color:var(--primary); font-size:.8rem; flex-shrink:0; }
+.diver-name      { font-size:.875rem; font-weight:600; color:var(--on-surface); }
+.diver-email     { font-size:.72rem; color:var(--on-surface-variant); }
+.trip-cell       { font-size:.85rem; color:var(--on-surface-variant); }
+.date-cell       { font-size:.85rem; color:var(--on-surface-variant); }
+.price-cell      { font-weight:700; color:var(--primary); }
+.action-approve  { background:rgba(0,103,125,.1);  color:var(--secondary); cursor:pointer; }
+.action-cancel   { background:rgba(186,26,26,.1);  color:var(--error);     cursor:pointer; }
+.action-chat     { background:var(--surface-container); cursor:pointer; }
+.action-icon     { font-size:1rem; }
+.empty-icon      { font-size:2rem; }

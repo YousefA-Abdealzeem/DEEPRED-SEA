@@ -1,0 +1,77 @@
+<div class="min-vh-100 d-flex align-items-center justify-content-center p-4 register-page">
+  <div class="card-premium p-5 animate-fadeInUp register-card">
+
+    <div class="text-center mb-4">
+      <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3 register-logo-circle">
+        <span class="material-symbols-outlined text-white register-logo-icon">scuba_diving</span>
+      </div>
+      <h2 class="register-title">Create Account</h2>
+      <p class="register-subtitle">Join Egypt's premier diving platform</p>
+    </div>
+
+    <!-- Role selector -->
+    <div class="row g-2 mb-4">
+      <div class="col-6" *ngFor="let r of roles">
+        <button type="button" (click)="form.get('role')?.setValue(r.value)"
+          class="w-100 p-3 border-0 rounded-3 text-start role-card-btn"
+          [class.role-card-btn-active]="form.get('role')?.value === r.value"
+          [class.role-card-btn-inactive]="form.get('role')?.value !== r.value">
+          <span class="material-symbols-outlined d-block mb-1 role-card-icon">{{r.icon}}</span>
+          <span class="role-card-name">{{r.label}}</span><br>
+          <span class="role-card-desc">{{r.desc}}</span>
+        </button>
+      </div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="mb-3">
+        <label class="form-label field-label">Full Name</label>
+        <div class="position-relative">
+          <span class="material-symbols-outlined position-absolute input-icon">person</span>
+          <input formControlName="name" type="text" placeholder="Ahmed Mohamed"
+            class="form-control-tonal w-100 ps-5"
+            [class.is-invalid]="form.get('name')?.invalid && form.get('name')?.touched">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label field-label">Email</label>
+        <div class="position-relative">
+          <span class="material-symbols-outlined position-absolute input-icon">email</span>
+          <input formControlName="email" type="email" placeholder="your@email.com"
+            class="form-control-tonal w-100 ps-5"
+            [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched">
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label field-label">Password</label>
+        <div class="position-relative">
+          <span class="material-symbols-outlined position-absolute input-icon">lock</span>
+          <input formControlName="password" [type]="showPassword ? 'text' : 'password'"
+            placeholder="Min. 6 characters"
+            class="form-control-tonal w-100 ps-5 pe-5"
+            [class.is-invalid]="form.get('password')?.invalid && form.get('password')?.touched">
+          <button type="button" (click)="showPassword=!showPassword"
+            class="position-absolute border-0 bg-transparent password-toggle">
+            <span class="material-symbols-outlined password-toggle-icon">
+              {{showPassword ? 'visibility_off' : 'visibility'}}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loading"
+        class="btn-primary-gradient w-100 py-3 d-flex align-items-center justify-content-center gap-2">
+        <span *ngIf="loading" class="spinner-border spinner-border-sm"></span>
+        <span class="material-symbols-outlined submit-icon" *ngIf="!loading">how_to_reg</span>
+        {{ loading ? 'Creating...' : 'Create Account' }}
+      </button>
+
+      <p class="text-center mt-3 form-footer">
+        Already have an account?
+        <a routerLink="/auth/login" class="form-link">Sign in</a>
+      </p>
+    </form>
+  </div>
+</div>

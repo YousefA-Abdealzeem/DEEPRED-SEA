@@ -1,0 +1,79 @@
+/* ── Page wrapper ── */
+.register-page {
+  background: linear-gradient(160deg, #001d32 0%, #003d6b 50%, #005d90 100%);
+}
+
+/* ── Card ── */
+.register-card {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 2rem;
+}
+
+/* ── Logo circle ── */
+.register-logo-circle {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #005d90, #0077b6);
+}
+
+.register-logo-icon { font-size: 2rem; }
+
+/* ── Headings ── */
+.register-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--on-surface);
+}
+
+.register-subtitle { color: var(--on-surface-variant); }
+
+/* ── Role buttons ── */
+.role-card-btn {
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.role-card-btn-active {
+  background: linear-gradient(135deg, #005d90, #0077b6);
+  color: #fff;
+}
+.role-card-btn-inactive {
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+}
+.role-card-icon { font-size: 1.5rem; }
+.role-card-name  { font-weight: 700; font-size: 0.9rem; }
+.role-card-desc  { font-size: 0.75rem; opacity: 0.75; }
+
+/* ── Labels ── */
+.field-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--on-surface);
+}
+
+/* ── Input icons ── */
+.input-icon {
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--outline);
+  font-size: 1.1rem;
+}
+
+.password-toggle {
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--outline);
+}
+.password-toggle-icon { font-size: 1.1rem; }
+
+/* ── Submit icon ── */
+.submit-icon { font-size: 1.1rem; }
+
+/* ── Footer ── */
+.form-footer { color: var(--on-surface-variant); font-size: 0.875rem; }
+.form-link { color: var(--primary); font-weight: 700; text-decoration: none; }

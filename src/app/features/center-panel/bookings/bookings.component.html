@@ -1,0 +1,88 @@
+<div class="animate-fadeInUp">
+  <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+    <div>
+      <h2 class="page-title">Bookings</h2>
+      <p class="total-revenue">Total Revenue:
+        <strong class="revenue-val">EGP {{totalRevenue | number}}</strong>
+      </p>
+    </div>
+    <div class="position-relative">
+      <span class="material-symbols-outlined position-absolute search-icon">search</span>
+      <input [(ngModel)]="search" type="text" placeholder="Search by diver or ID..."
+        class="form-control-tonal ps-5 search-width">
+    </div>
+  </div>
+
+  <div class="d-flex gap-2 mb-4 flex-wrap">
+    <button *ngFor="let tab of filterTabs" (click)="filter=tab.value"
+      class="px-4 py-2 rounded-pill border-0 filter-tab"
+      [class.tab-active]="filter===tab.value"
+      [class.tab-inactive]="filter!==tab.value">
+      {{tab.label}} ({{countByStatus(tab.value)}})
+    </button>
+  </div>
+
+  <div class="card-premium p-0" style="overflow:hidden;">
+    <div class="table-responsive">
+      <table class="table table-clean mb-0" style="min-width:800px;">
+        <thead>
+          <tr>
+            <th>ID</th><th>Diver</th><th>Trip</th><th>Date</th>
+            <th>Divers</th><th>Total</th><th>Payment</th><th>Status</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let b of filtered">
+            <td><span class="booking-id">{{b.id}}</span></td>
+            <td>
+              <div class="d-flex align-items-center gap-2">
+                <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold diver-avatar">
+                  {{b.diver.charAt(0)}}
+                </div>
+                <div>
+                  <div class="diver-name">{{b.diver}}</div>
+                  <div class="diver-email">{{b.email}}</div>
+                </div>
+              </div>
+            </td>
+            <td class="trip-cell">{{b.trip}}</td>
+            <td class="date-cell">{{b.date}}</td>
+            <td class="dives-cell">{{b.divers}}</td>
+            <td class="price-cell">EGP {{b.total | number}}</td>
+            <td>
+              <span [class]="b.payment==='paid'?'badge-active':b.payment==='deposit'?'badge-pending':'badge-blocked'">
+                {{b.payment}}
+              </span>
+            </td>
+            <td>
+              <span [class]="b.status==='confirmed'?'badge-active':b.status==='pending'?'badge-pending':'badge-blocked'">
+                {{b.status}}
+              </span>
+            </td>
+            <td>
+              <div class="d-flex gap-1">
+                <button *ngIf="b.status==='pending'" (click)="update(b.id,'confirmed')" title="Approve"
+                  class="border-0 p-2 rounded-2 action-approve">
+                  <span class="material-symbols-outlined action-icon">check_circle</span>
+                </button>
+                <button *ngIf="b.status==='pending'" (click)="update(b.id,'cancelled')" title="Cancel"
+                  class="border-0 p-2 rounded-2 action-cancel">
+                  <span class="material-symbols-outlined action-icon">cancel</span>
+                </button>
+                <button title="Message" class="border-0 p-2 rounded-2 action-chat">
+                  <span class="material-symbols-outlined action-icon" style="color:var(--on-surface-variant);">chat</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="filtered.length===0">
+            <td colspan="9" class="text-center py-5" style="color:var(--on-surface-variant);">
+              <span class="material-symbols-outlined d-block mb-2 empty-icon">search_off</span>
+              No bookings found
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

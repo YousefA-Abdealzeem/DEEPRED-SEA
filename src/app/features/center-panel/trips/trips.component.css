@@ -1,0 +1,30 @@
+
+/* ── Header ── */
+.page-title    { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; color:var(--on-surface); margin-bottom:.25rem; }
+.page-subtitle { color:var(--on-surface-variant); margin:0; }
+
+/* ── Trip card ── */
+.trip-name-h  { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; color:var(--on-surface); margin-bottom:.4rem; }
+
+.status-active   { background:rgba(0,103,125,.12); color:var(--secondary); font-size:.75rem; font-weight:700; cursor:pointer; }
+.status-draft    { background:rgba(245,158,11,.12); color:#d97706;           font-size:.75rem; font-weight:700; cursor:pointer; }
+
+.occ-label { font-size:.75rem; color:var(--on-surface-variant); }
+.occ-val   { font-size:.75rem; font-weight:700; color:var(--primary); }
+.occ-track { background:var(--surface-container); border-radius:9999px; height:6px; overflow:hidden; }
+.occ-bar   { height:100%; border-radius:9999px; background:linear-gradient(90deg,#005d90,#50d9fe); transition:width .8s; }
+
+.trip-meta-icon { font-size:.9rem; }
+.trip-meta-text { font-size:.8rem; color:var(--on-surface-variant); }
+
+.trip-price-val { font-family:'Plus Jakarta Sans',sans-serif; font-size:1.15rem; font-weight:800; color:var(--primary); }
+.trip-edit-btn  { background:var(--surface-container); cursor:pointer; }
+.trip-edit-icon { font-size:1rem; color:var(--on-surface-variant); }
+.trip-del-btn   { background:rgba(186,26,26,.08); cursor:pointer; }
+.trip-del-icon  { font-size:1rem; color:var(--error); }
+
+/* ── Modal ── */
+.modal-overlay { inset:0; background:rgba(0,0,0,.45); z-index:2000; backdrop-filter:blur(4px); }
+.modal-card    { width:100%; max-width:520px; max-height:90vh; overflow-y:auto; }
+.modal-title   { font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; color:var(--on-surface); margin:0; }
+.field-label   { font-size:.83rem; font-weight:600; color:var(--on-surface); }
